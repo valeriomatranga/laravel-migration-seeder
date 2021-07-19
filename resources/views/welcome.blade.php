@@ -42,6 +42,17 @@
 
             .content {
                 text-align: center;
+                width: 100%;
+                margin: auto;
+                display: flex;
+                flex-wrap: wrap;
+            }
+
+            .card{
+                margin: 0.5rem;
+                width: calc(100% / 4 - 18px);
+                border: 1px solid gray;
+                background-color: whitesmoke;
             }
 
             .title {
@@ -64,37 +75,42 @@
         </style>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
+        <div class="content">
+            @foreach ($offerts as $offert)
 
-                        @if (Route::has('register'))
-                            <a href="{{ route('register') }}">Register</a>
-                        @endif
-                    @endauth
-                </div>
-            @endif
-
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
-                </div>
-
-                <div class="links">
-                    <a href="https://laravel.com/docs">Docs</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://blog.laravel.com">Blog</a>
-                    <a href="https://nova.laravel.com">Nova</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://vapor.laravel.com">Vapor</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
-                </div>
+            <div class="card">
+                <dl>
+                    <h3>Name:</h3>
+                    <h2>{{$offert->name}}</h2>
+                    <img src="{{$offert->img}}" alt="">
+                    <div>
+                        <span>N.People:</span>
+                        <span>{{$offert->people}}</span>
+                    </div>
+                    <div>
+                        <span>Departure:</span>
+                        <span>{{$offert->departure}}</span>
+                    </div>
+                    <div>
+                        <span>Arrival:</span>
+                        <span>{{$offert->arrival}}</span>
+                    </div>
+                    <div>
+                        <span>Day:</span>
+                        <span>{{$offert->day}}</span>
+                    </div>
+                    <div>
+                        <span>Description:</span>
+                        <p>{{$offert->description}}</p>
+                    </div>
+                    <div>
+                        <span>Price:</span>
+                        <span> € {{$offert->price}}</span>
+                    </div>
+                </dl>
             </div>
+                
+            @endforeach
         </div>
     </body>
 </html>

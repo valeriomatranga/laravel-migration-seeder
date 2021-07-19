@@ -14,5 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $offerts = App\Offert::all();
+    return view('welcome', compact('offerts'));
 });

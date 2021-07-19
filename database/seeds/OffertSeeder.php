@@ -15,11 +15,12 @@ class OffertSeeder extends Seeder
         for ($i=0; $i < 10; $i++) { 
             $offert = new Offert();
             $offert->name = $faker->state();
+            $offert->img = $faker->imageUrl(400, 400, 'state', true);
             $offert->people = $faker->randomDigit();
             $offert->departure = $faker->city();
             $offert->arrival = $offert->name;
             $offert->day = $faker->randomDigit();
-            $offert->description = $faker->randomHtml();
+            $offert->description = $faker->paragraph();
             $offert->price = $faker->numberBetween(2000, 10000);
             $offert->save();
         }
